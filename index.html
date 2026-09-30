@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DikxaTracker Tools</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- ================= LOADING ================= -->
+  <div id="loadingLayer" class="layer active">
+    <div class="loading-wrap">
+      <div class="loading-logo">
+        <img id="loadingLogo" src="https://cdn.phototourl.com/member/2026-09-30-ef37e41e-7b8c-4535-97fb-bbe16a0cc0d6.jpg" alt="Logo">
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+
+  <!-- ================= HOME ================= -->
+  <div id="homeLayer" class="layer">
+    <div class="container">
+
+      <!-- Topbar: logo kiri, info+contact kanan, hamburger -->
+      <div class="topbar">
+        <img id="homeLogo" class="logo-round" src="https://cdn.phototourl.com/member/2026-09-30-ef37e41e-7b8c-4535-97fb-bbe16a0cc0d6.jpg" alt="Logo">
+        <div class="topbar-actions">
+          <button class="btn-icon-sm" id="btnInfo" title="Info">
+            <i class="fa-solid fa-circle-info"></i>
+          </button>
+          <button class="btn-icon-sm" id="btnContactDev" title="Contact Dev">
+            <i class="fa-solid fa-headset"></i>
+          </button>
+          <button class="btn-icon-sm" id="btnHamburger" title="Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Judul -->
+      <h1 class="app-title">DikxaVirusz</h1>
+      <p class="app-sub">INSTTAL ALAT YANG DIBUTUHKAN</p>
+
+      <!-- Install Termux + Install Command -->
+      <div class="row-2">
+        <a id="btnTermux" class="btn btn-blue" target="_blank">
+          <i class="fa-solid fa-download"></i> Install Termux
+        </a>
+        <button class="btn btn-pink" id="btnShowCommands">
+          <i class="fa-solid fa-terminal"></i> Install Package
+        </button>
+      </div>
+
+      <!-- Panel 12 command -->
+      <div id="commandsPanel" class="panel hidden">
+        <h3 class="panel-title">install semua bahan penting ini</h3>
+        <div id="commandsList" class="copy-list"></div>
+      </div>
+
+      <!-- Start Running -->
+      <button class="btn btn-yellow btn-block" id="btnStartRunning">
+        <i class="fa-solid fa-play"></i> Start Running
+      </button>
+      <div id="runningPanel" class="panel hidden">
+        <div id="runningList" class="copy-list"></div>
+        <div class="warn-box">⚠️ Pastikan Termux sudah terinstall sebelum menjalankan command di atas!</div>
+      </div>
+
+      <!-- Get Status -->
+      <button class="btn btn-blue btn-block" id="btnGetStatus">
+        <i class="fa-solid fa-signal"></i> Get Sites
+      </button>
+      <div id="statusPanel" class="panel hidden">
+        <div id="statusList" class="copy-list"></div>
+        <div class="warn-box">⚠️ Jika status tidak muncul, cek koneksi & jalankan ulang Start Running.</div>
+      </div>
+
+      <!-- Support Dev -->
+      <a id="btnSupport" class="btn btn-pink btn-block" target="_blank">
+        <i class="fa-solid fa-heart"></i> Support Developer
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ================= INFO LAYER ================= -->
+  <div id="infoLayer" class="layer">
+    <div class="container">
+      <button class="btn-back" onclick="showLayer('homeLayer')"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
+      <h1 class="app-title">➤ informasi</h1>
+      <div class="card">
+        <p>Aplikasi ini dibuat untuk mempermudah instalasi & menjalankan script di Termux.</p>
+        <p>Versi: <b>1.0.0</b></p>
+        <p>Developer: <b id="devNameInfo">-</b></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CONTACT LAYER ================= -->
+  <div id="contactLayer" class="layer">
+    <div class="container">
+      <button class="btn-back" onclick="showLayer('homeLayer')"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
+      <h1 class="app-title">📞 Contact Developer</h1>
+      <div class="card">
+        <a id="contactWaLink" class="btn btn-blue btn-block" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp Dev</a>
+        <a id="contactTeleLink" class="btn btn-yellow btn-block" target="_blank"><i class="fa-brands fa-telegram"></i> Telegram Dev</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= POPUP MENU (hamburger) ================= -->
+  <div id="popupOverlay" class="popup-overlay hidden">
+    <div class="popup-menu" id="popupMenu">
+      <h3 class="popup-title">Other Menu</h3>
+      <button class="popup-item" data-target="homeLayer"><i class="fa-solid fa-code"></i> Home</button>
+      <button class="popup-item" data-target="contactLayer"><i class="fa-solid fa-envelope"></i> Contact Us</button>
+      <button class="popup-item" data-target="infoLayer"><i class="fa-solid fa-circle-info"></i> Info Aplikasi</button>
+      <button class="popup-item" data-target="contactLayer"><i class="fa-solid fa-headset"></i> Contact Dev</button>
+
+      <div class="popup-section">
+        <span class="popup-section-title">➤ Sosmed / Saluran</span>
+        <a id="btnTiktok" class="popup-item popup-socmed" target="_blank">
+          <i class="fa-brands fa-tiktok"></i> TikTok
+        </a>
+        <a id="btnWa" class="popup-item popup-socmed" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+        <a id="btnTele" class="popup-item popup-socmed" target="_blank">
+          <i class="fa-brands fa-telegram"></i> Telegram
+        </a>
+        <a id="btnYt" class="popup-item popup-socmed" target="_blank">
+          <i class="fa-brands fa-youtube"></i> YouTube
+        </a>
+      </div>
+
+      <div class="popup-footer">— Terima kasih —</div>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/loading.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/copy.js"></script>
+</body>
+</html>
